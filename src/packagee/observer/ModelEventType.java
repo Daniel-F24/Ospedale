@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package packagee.observer;
 
-/**
- *
- * @author danip
- */
-public class ModelEventType {
-    
+
+public enum ModelEventType {
+    USERS_CHANGED,
+    APPOINTMENTS_CHANGED,
+    HOSPITALIZATIONS_CHANGED,
+    ALL_CHANGED
 }
+
