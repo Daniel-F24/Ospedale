@@ -1,15 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package packagee.model.enums;
 
-/**
- *
- * @author edangulo
- */
 public enum Specialty {
-    
     GENERAL_MEDICINE,
     CARDIOLOGY,
     PEDIATRICS,
@@ -21,5 +12,4 @@ public enum Specialty {
     ONCOLOGY,
     OPHTHALMOLOGY,
     INTERNAL_MEDICINE
-    
 }
