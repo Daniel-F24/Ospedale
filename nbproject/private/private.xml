@@ -3,10 +3,62 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Jefferson/Ospedale/src/packagee/NewJFrame.java</file>
-            <file>file:/C:/Jefferson/Ospedale/src/packagee/NewJFrame1.java</file>
-            <file>file:/C:/Jefferson/Ospedale/src/packagee/NewJFrame11.java</file>
-            <file>file:/C:/Jefferson/Ospedale/src/packagee/NewJFrame111.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/dto/UserDTO.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/PrescriptionValidator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/controller/AuthController.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/controller/HospitalizationController.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/PatientView.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/AppointmentValidator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/dto/HospitalizationDTO.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/controller/AppointmentController.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/service/DoctorService.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/test/HospitalizationFlowTestRunner.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/response/Response.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/repository/UserRepository.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/app/ApplicationContext.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/observer/ModelSubject.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/request/HospitalizationRequest.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/observer/ModelEvent.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/DoctorView.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/util/DateTimeUtil.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/observer/ModelEventPublisher.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/request/LoginRequest.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/repository/HospitalizationRepository.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/LoginView.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/PatientValidator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/service/HospitalizationService.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/dto/PatientDTO.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/response/StatusCode.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/controller/TableController.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/model/Prescription.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/observer/ModelEventType.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/util/JsonLoadResult.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/request/DoctorRequest.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/repository/DataStore.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/UserValidator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/observer/ModelObserver.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/app/Main.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/repository/AppointmentRepository.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/AdminView.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/request/PrescriptionRequest.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/util/JsonLoader.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/dto/DoctorDTO.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/controller/DoctorController.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/service/AuthService.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/util/Serializer.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/request/PatientRequest.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/request/AppointmentRequest.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/DoctorValidator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/test/PersistenceTestRunner.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/service/PatientService.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/dto/AppointmentDTO.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/dto/PrescriptionDTO.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/ValidationResult.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/controller/PatientController.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/util/IdGenerator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/validation/HospitalizationValidator.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/service/AppointmentService.java</file>
+            <file>file:/C:/Users/danip/Ospedale/src/packagee/test/ManualTestRunner.java</file>
         </group>
     </open-files>
 </project-private>

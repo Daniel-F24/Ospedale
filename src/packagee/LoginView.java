@@ -22,14 +22,14 @@ import javax.swing.UIManager;
  * @author jjlora
  * @author edangulo
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame {
 
     private int x, y;
     private ArrayList<User> users;
     private ArrayList<Hospitalization> hospitalizations;
     private ArrayList<Appointment> appointments;
 
-    public NewJFrame() {
+    public LoginView() {
         initComponents();
         this.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
@@ -427,17 +427,17 @@ public class NewJFrame extends javax.swing.JFrame {
                 selectedUser = user;
                 if (selectedUser.getPassword().equals(jTextField2.getText())) {
                     if (selectedUser instanceof Administrator ) {
-                        NewJFrame11 admin = new NewJFrame11(selectedUser,users,hospitalizations, appointments);
+                        AdminView admin = new AdminView(selectedUser,users,hospitalizations, appointments);
                         this.setVisible(false);
                         admin.setVisible(true);
                     }
                     else if (selectedUser instanceof Doctor ) {
-                        NewJFrame111 doctor = new NewJFrame111(selectedUser,(Doctor)selectedUser,users,hospitalizations,appointments);
+                        DoctorView doctor = new DoctorView(selectedUser,(Doctor)selectedUser,users,hospitalizations,appointments);
                         this.setVisible(false);
                         doctor.setVisible(true);
                     }
                     else {
-                        NewJFrame1 patient = new NewJFrame1(selectedUser,(Patient) selectedUser,users,appointments, hospitalizations);
+                        PatientView patient = new PatientView(selectedUser,(Patient) selectedUser,users,appointments, hospitalizations);
                         this.setVisible(false);
                         patient.setVisible(true);
                     }
@@ -484,7 +484,7 @@ public class NewJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new LoginView().setVisible(true);
             }
         });
     }

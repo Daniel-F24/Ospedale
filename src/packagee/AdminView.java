@@ -18,14 +18,14 @@ import java.util.ArrayList;
  * @author jjlora
  * @author edangulo
  */
-public class NewJFrame11 extends javax.swing.JFrame {
+public class AdminView extends javax.swing.JFrame {
 
     private int x, y;
     private ArrayList<User> users;
     private ArrayList<Appointment>appointments;
     private ArrayList<Hospitalization>hospitalizations;
     private User user;
-    public NewJFrame11(User user, ArrayList<User>users,ArrayList<Hospitalization> hospitalizations, ArrayList<Appointment> appointments) {
+    public AdminView(User user, ArrayList<User>users,ArrayList<Hospitalization> hospitalizations, ArrayList<Appointment> appointments) {
         initComponents();
         this.user = user;
         this.users = users;
@@ -443,14 +443,14 @@ public class NewJFrame11 extends javax.swing.JFrame {
             if(use.getId() == idDoctor)
                 temp =(Doctor) user;
         }
-        NewJFrame111 doctor = new NewJFrame111(user,temp, users, hospitalizations,appointments);
+        DoctorView doctor = new DoctorView(user,temp, users, hospitalizations,appointments);
         this.setVisible(false);
         doctor.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         
-        NewJFrame login = new NewJFrame();
+        LoginView login = new LoginView();
         this.setVisible(false);
         login.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -462,7 +462,7 @@ public class NewJFrame11 extends javax.swing.JFrame {
             if(use.getId() == idPatient)
                 temp =(Patient) user;
         }
-        NewJFrame1 patient = new NewJFrame1(user,temp,users,appointments,hospitalizations);
+        PatientView patient = new PatientView(user,temp,users,appointments,hospitalizations);
         this.setVisible(false);
         patient.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
