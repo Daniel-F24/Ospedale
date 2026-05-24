@@ -1,8 +1,6 @@
 package packagee.dto;
 
-/**
- * Datos serializados de una prescripcion medica.
- */
+
 public class PrescriptionDTO {
 
     private final String appointmentId;
