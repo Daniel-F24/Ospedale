@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Datos serializados de una cita medica para las vistas y tablas.
- */
+
 public class AppointmentDTO {
 
     private final String id;
