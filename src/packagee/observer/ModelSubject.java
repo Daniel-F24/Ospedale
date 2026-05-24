@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package packagee.observer;
 
-/**
- *
- * @author danip
- */
-public class ModelSubject {
-    
+public interface ModelSubject {
+    void addObserver(ModelObserver observer);
+    void removeObserver(ModelObserver observer);
+    void notifyObservers(ModelEvent event);
 }
+
