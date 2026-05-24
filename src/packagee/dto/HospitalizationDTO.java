@@ -1,8 +1,6 @@
 package packagee.dto;
 
-/**
- * Datos serializados de una hospitalizacion para las vistas y tablas.
- */
+
 public class HospitalizationDTO {
 
     private final String id;
