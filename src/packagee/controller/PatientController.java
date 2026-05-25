@@ -26,6 +26,17 @@ public class PatientController {
         return patientService.getPatientById(patientId);
     }
 
+    public Response<PatientDTO> getPatientInfo(String patientIdText) {
+        if (patientIdText == null || patientIdText.trim().isEmpty()) {
+            return Response.badRequest("Seleccione un paciente valido.");
+        }
+        try {
+            return getPatientInfo(Long.parseLong(patientIdText.trim()));
+        } catch (NumberFormatException ex) {
+            return Response.badRequest("El id del paciente debe ser numerico.");
+        }
+    }
+
     public Response<List<PatientDTO>> getAllPatients() {
         return patientService.getAllPatients();
     }
