@@ -145,8 +145,8 @@ public class HospitalizationService {
         }
 
         Hospitalization hospitalization = hospitalizationOptional.get();
-        if (hospitalization.getStatus() == HospitalizationStatus.CANCELED) {
-            return Response.conflict("La hospitalizacion ya se encuentra cancelada.");
+        if (hospitalization.getStatus() != HospitalizationStatus.REQUESTED) {
+            return Response.conflict("Solo se pueden denegar hospitalizaciones en estado REQUESTED.");
         }
 
         hospitalization.deny();
@@ -190,9 +190,8 @@ public class HospitalizationService {
         }
 
         Appointment appointment = appointmentOptional.get();
-        if (appointment.getStatus() == AppointmentStatus.COMPLETED
-                || appointment.getStatus() == AppointmentStatus.CANCELED) {
-            return Response.conflict("No se puede enviar a hospitalizacion desde una cita completada o cancelada.");
+        if (appointment.getStatus() != AppointmentStatus.PENDING) {
+            return Response.conflict("Solo se puede enviar a hospitalizacion desde una cita aceptada PENDING.");
         }
         if (appointment.getPatient() == null || appointment.getDoctor() == null) {
             return Response.conflict("La cita debe tener paciente y doctor asignados.");
