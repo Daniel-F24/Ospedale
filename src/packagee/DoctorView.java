@@ -584,7 +584,7 @@ public class DoctorView extends javax.swing.JFrame implements ModelObserver {
         cmbAppointmentsToReschedule.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one" }));
 
         btnRescheduleAppointment.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        btnRescheduleAppointment.setText("Accept");
+        btnRescheduleAppointment.setText("Reschedule");
         btnRescheduleAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRescheduleAppointmentActionPerformed(evt);
@@ -1206,13 +1206,13 @@ public class DoctorView extends javax.swing.JFrame implements ModelObserver {
     private void btnLogoutDoctorActionPerformed(java.awt.event.ActionEvent evt) {                                                
         authController.logout();
         LoginView login = new LoginView(applicationContext);
-        this.setVisible(false);
+        this.dispose();
         login.setVisible(true);
     }                                               
 
     private void btnBackToAdminFromDoctorActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         AdminView admin = new AdminView(applicationContext, user);
-        this.setVisible(false);
+        this.dispose();
         admin.setVisible(true);
     }                                                        
 
@@ -1236,13 +1236,31 @@ public class DoctorView extends javax.swing.JFrame implements ModelObserver {
             return;
         }
 
+        String appointmentId = selectedComboValue(cmbAppointmentsToComplete);
+        if (!appointmentId.isEmpty()) {
+            Response<?> response = hospitalizationController.sendToHospitalizationFromAppointment(
+                    appointmentId,
+                    RoomType.GENERAL.name(),
+                    txaDoctorHospitalizationReason.getText().trim(),
+                    txaDoctorHospitalizationObservations.getText().trim()
+            );
+            JOptionPane.showMessageDialog(this, response.getMessage());
+            if (response.isSuccess()) {
+                clearHospitalizationFields();
+                loadHospitalizationCombos();
+                loadAppointmentActionCombos();
+                refreshDoctorAppointmentsTable(false);
+            }
+            return;
+        }
+
         String patientId = selectedComboValue(cmbHospitalizationPatients);
         HospitalizationRequest request = new HospitalizationRequest(
                 patientId,
                 String.valueOf(doctor.getId()),
                 txtHospitalizationEntryDate.getText().trim(),
                 txaDoctorHospitalizationReason.getText().trim(),
-                RoomType.STANDARD.name(),
+                RoomType.GENERAL.name(),
                 txaDoctorHospitalizationObservations.getText().trim()
         );
         Response<HospitalizationDTO> created = hospitalizationController.requestHospitalization(request);
@@ -1449,6 +1467,9 @@ public class DoctorView extends javax.swing.JFrame implements ModelObserver {
     private void refreshPatientAppointmentsTable(String patientId) {
         DefaultTableModel model = (DefaultTableModel) tblPatientAppointmentHistory.getModel();
         model.setRowCount(0);
+        if (patientId == null || patientId.trim().isEmpty()) {
+            return;
+        }
         Response<java.util.List<AppointmentDTO>> response = appointmentController.getPatientAppointments(patientId);
         if (!response.isSuccess()) {
             JOptionPane.showMessageDialog(this, response.getMessage());
@@ -1488,7 +1509,9 @@ public class DoctorView extends javax.swing.JFrame implements ModelObserver {
                 loadAppointmentActionCombos();
                 refreshDoctorAppointmentsTable(false);
                 String patientId = selectedComboValue(cmbDoctorPatients);
-                refreshPatientAppointmentsTable(patientId);
+                if (!patientId.isEmpty()) {
+                    refreshPatientAppointmentsTable(patientId);
+                }
             }
             if (event.getType() == ModelEventType.HOSPITALIZATIONS_CHANGED || event.getType() == ModelEventType.ALL_CHANGED) {
                 loadHospitalizationCombos();
