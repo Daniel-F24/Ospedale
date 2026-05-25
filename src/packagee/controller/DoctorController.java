@@ -27,6 +27,17 @@ public class DoctorController {
         return doctorService.getDoctorById(doctorId);
     }
 
+    public Response<DoctorDTO> getDoctorInfo(String doctorIdText) {
+        if (doctorIdText == null || doctorIdText.trim().isEmpty()) {
+            return Response.badRequest("Seleccione un doctor valido.");
+        }
+        try {
+            return getDoctorInfo(Long.parseLong(doctorIdText.trim()));
+        } catch (NumberFormatException ex) {
+            return Response.badRequest("El id del doctor debe ser numerico.");
+        }
+    }
+
     public Response<List<DoctorDTO>> getAllDoctors() {
         return doctorService.getAllDoctors();
     }
