@@ -28,7 +28,7 @@ public class AppointmentValidator {
 
         validatePatientId(request.getPatientId(), result);
         validateOptionalDoctorId(request.getDoctorId(), result);
-        validateSpecialty(request.getSpecialty(), result);
+        validateSpecialtyOrDoctor(request.getSpecialty(), request.getDoctorId(), result);
         validateDate(request.getDate(), result);
         validateTime(request.getTime(), result);
         validateReason(request.getReason(), result);
@@ -100,6 +100,20 @@ public class AppointmentValidator {
             Specialty.valueOf(specialty.trim());
         } catch (IllegalArgumentException ex) {
             result.addError("La especialidad de la cita no es valida.");
+        }
+    }
+
+    public void validateSpecialtyOrDoctor(String specialty, String doctorId, ValidationResult result) {
+        if (isBlank(doctorId)) {
+            validateSpecialty(specialty, result);
+            return;
+        }
+        if (!isBlank(specialty)) {
+            try {
+                Specialty.valueOf(specialty.trim());
+            } catch (IllegalArgumentException ex) {
+                result.addError("La especialidad de la cita no es valida.");
+            }
         }
     }
 
@@ -186,3 +200,4 @@ public class AppointmentValidator {
         return value == null || value.trim().isEmpty();
     }
 }
+
