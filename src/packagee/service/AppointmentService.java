@@ -62,17 +62,30 @@ public class AppointmentService {
             return Response.notFound("No existe un paciente con el id indicado.");
         }
 
-        Specialty specialty = Specialty.valueOf(request.getSpecialty().trim());
         LocalDateTime dateTime = DateTimeUtil.parseDateTime(request.getDate(), request.getTime());
-        Optional<Doctor> selectedDoctorOptional = resolveDoctor(request.getDoctorId(), specialty, dateTime);
-        if (!selectedDoctorOptional.isPresent()) {
-            return Response.conflict("No hay doctor disponible para la especialidad y horario solicitados.");
+        Specialty specialty;
+        Optional<Doctor> selectedDoctorOptional;
+
+        if (!isBlank(request.getDoctorId())) {
+            long doctorId = Long.parseLong(request.getDoctorId());
+            selectedDoctorOptional = userRepository.findDoctorById(doctorId);
+            if (!selectedDoctorOptional.isPresent()) {
+                return Response.notFound("No existe un doctor con el id indicado.");
+            }
+            specialty = selectedDoctorOptional.get().getSpecialty();
+            if (!isBlank(request.getSpecialty())
+                    && Specialty.valueOf(request.getSpecialty().trim()) != specialty) {
+                return Response.conflict("La especialidad de la cita debe coincidir con la especialidad del doctor.");
+            }
+        } else {
+            specialty = Specialty.valueOf(request.getSpecialty().trim());
+            selectedDoctorOptional = resolveDoctor(request.getDoctorId(), specialty, dateTime);
+            if (!selectedDoctorOptional.isPresent()) {
+                return Response.conflict("No hay doctor disponible para la especialidad y horario solicitados.");
+            }
         }
 
         Doctor doctor = selectedDoctorOptional.get();
-        if (doctor.getSpecialty() != specialty) {
-            return Response.conflict("La especialidad de la cita debe coincidir con la especialidad del doctor.");
-        }
         if (isDoctorBusyAt(doctor.getId(), dateTime, null)) {
             return Response.conflict("El doctor no tiene disponibilidad en el horario solicitado.");
         }
@@ -318,3 +331,4 @@ public class AppointmentService {
     }
     
 }
+
