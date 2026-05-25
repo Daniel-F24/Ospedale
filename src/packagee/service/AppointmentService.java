@@ -3,6 +3,8 @@ package packagee.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import packagee.dto.AppointmentDTO;
 import packagee.dto.PrescriptionDTO;
 import packagee.model.Appointment;
@@ -227,15 +229,11 @@ public class AppointmentService {
         int duration;
         int frequency;
         try {
-            dose = Double.parseDouble(request.getDose());
-            duration = Integer.parseInt(request.getTreatmentDuration());
-            frequency = Integer.parseInt(request.getFrequency());
-        } catch (NumberFormatException ex) {
-            return Response.badRequest("Dosis, duracion y frecuencia deben ser valores numericos.");
-        }
-
-        if (dose <= 0 || duration <= 0 || frequency <= 0) {
-            return Response.badRequest("Dosis, duracion y frecuencia deben ser mayores que 0.");
+            dose = parsePositiveDouble(request.getDose(), "La dosis");
+            duration = parsePositiveInteger(request.getTreatmentDuration(), "La duracion del tratamiento");
+            frequency = parsePositiveInteger(request.getFrequency(), "La frecuencia");
+        } catch (IllegalArgumentException ex) {
+            return Response.badRequest(ex.getMessage());
         }
 
         Prescription prescription = new Prescription(
@@ -322,6 +320,42 @@ public class AppointmentService {
                 || normalized.equals("si");
     }
 
+
+    private double parsePositiveDouble(String value, String fieldName) {
+        String numericText = extractFirstNumber(value);
+        if (numericText == null) {
+            throw new IllegalArgumentException(fieldName + " debe contener un valor numerico mayor que 0.");
+        }
+        double parsed = Double.parseDouble(numericText);
+        if (parsed <= 0) {
+            throw new IllegalArgumentException(fieldName + " debe ser mayor que 0.");
+        }
+        return parsed;
+    }
+
+    private int parsePositiveInteger(String value, String fieldName) {
+        String numericText = extractFirstNumber(value);
+        if (numericText == null) {
+            throw new IllegalArgumentException(fieldName + " debe contener un valor numerico mayor que 0.");
+        }
+        int parsed = (int) Math.round(Double.parseDouble(numericText));
+        if (parsed <= 0) {
+            throw new IllegalArgumentException(fieldName + " debe ser mayor que 0.");
+        }
+        return parsed;
+    }
+
+    private String extractFirstNumber(String value) {
+        if (value == null) {
+            return null;
+        }
+        Matcher matcher = Pattern.compile("\\d+(?:[\\.,]\\d+)?").matcher(value.trim());
+        if (!matcher.find()) {
+            return null;
+        }
+        return matcher.group().replace(',', '.');
+    }
+
     private void notifyAppointmentsChanged(String description) {
         modelEventPublisher.notifyChange(ModelEventType.APPOINTMENTS_CHANGED, "AppointmentService", description);
     }
@@ -331,4 +365,3 @@ public class AppointmentService {
     }
     
 }
-
