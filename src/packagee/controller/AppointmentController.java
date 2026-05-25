@@ -47,6 +47,17 @@ public class AppointmentController {
         return appointmentService.getPatientAppointments(patientId);
     }
 
+    public Response<List<AppointmentDTO>> getPatientAppointments(String patientIdText) {
+        if (patientIdText == null || patientIdText.trim().isEmpty()) {
+            return Response.badRequest("Seleccione un paciente valido.");
+        }
+        try {
+            return getPatientAppointments(Long.parseLong(patientIdText.trim()));
+        } catch (NumberFormatException ex) {
+            return Response.badRequest("El id del paciente debe ser numerico.");
+        }
+    }
+
     public Response<List<AppointmentDTO>> getDoctorAppointments(long doctorId, boolean onlyPending) {
         return appointmentService.getDoctorAppointments(doctorId, onlyPending);
     }
