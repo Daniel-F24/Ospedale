@@ -870,13 +870,13 @@ public class PatientView extends javax.swing.JFrame implements ModelObserver {
     private void btnLogoutPatientActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         authController.logout();
         LoginView login = new LoginView(applicationContext);
-        this.setVisible(false);
+        this.dispose();
         login.setVisible(true);
     }                                                
 
     private void btnBackToAdminFromPatientActionPerformed(java.awt.event.ActionEvent evt) {                                                          
         AdminView admin = new AdminView(applicationContext, user);
-        this.setVisible(false);
+        this.dispose();
         admin.setVisible(true);
     }                                                         
 
