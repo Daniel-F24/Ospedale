@@ -496,14 +496,14 @@ public class AdminView extends javax.swing.JFrame implements ModelObserver {
                 .findDoctorById(Long.parseLong(idDoctor.trim()))
                 .orElse(null);
         DoctorView doctor = new DoctorView(applicationContext, user, doctorModel);
-        this.setVisible(false);
+        this.dispose();
         doctor.setVisible(true);
     }                                                 
 
     private void btnLogoutAdminActionPerformed(java.awt.event.ActionEvent evt) {                                               
         authController.logout();
         LoginView login = new LoginView(applicationContext);
-        this.setVisible(false);
+        this.dispose();
         login.setVisible(true);
     }                                              
 
@@ -518,7 +518,7 @@ public class AdminView extends javax.swing.JFrame implements ModelObserver {
                 .findPatientById(Long.parseLong(idPatient.trim()))
                 .orElse(null);
         PatientView patient = new PatientView(applicationContext, user, patientModel);
-        this.setVisible(false);
+        this.dispose();
         patient.setVisible(true);
     }                                                  
 
